@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Average Share Price Calculator</title>
+    <script>
+        function calculateAdditionalShares() {
+            // Get input values from the form
+            let initialShares = parseFloat(document.getElementById("initialShares").value);
+            let initialPrice = parseFloat(document.getElementById("initialPrice").value);
+            let currentPrice = parseFloat(document.getElementById("currentPrice").value);
+            let targetPrice = parseFloat(document.getElementById("targetPrice").value);
+
+            // Calculate additional shares
+            let additionalShares = ((initialShares * initialPrice) - (initialShares * targetPrice)) / (targetPrice - currentPrice);
+
+            // Display the result
+            document.getElementById("result").textContent = "You need to buy additional shares: " + additionalShares.toFixed(2);
+              document.getElementById("totalSharePrice").textContent = "And Total Price for this share, would be " + (additionalShares.toFixed(2)*currentPrice);
+        }
+    </script>
+</head>
+<body>
+
+<h1>Average Share Price Calculator</h1>
+
+<form onsubmit="event.preventDefault(); calculateAdditionalShares();">
+    <label for="initialShares">Initial Number of Shares:</label>
+    <input type="number" id="initialShares" step="any" required><br><br>
+
+    <label for="initialPrice">Initial Price per Share:</label>
+    <input type="number" id="initialPrice" step="any" required><br><br>
+
+    <label for="currentPrice">Current Price per Share:</label>
+    <input type="number" id="currentPrice" step="any" required><br><br>
+
+    <label for="targetPrice">Target Average Price:</label>
+    <input type="number" id="targetPrice" step="any" required><br><br>
+
+    <button type="submit">Calculate</button>
+</form>
+
+<h3 id="result"></h3><br>
+<h3 id="totalSharePrice"></h3>
+
+</body>
+</html>
